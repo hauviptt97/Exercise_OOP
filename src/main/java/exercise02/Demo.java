@@ -12,7 +12,7 @@ public class Demo {
 
         List<Shape> shapes = sf.getData(input);
 
-        System.out.println(shapes.toString());
+        sf.showData(shapes);
 
     }
 

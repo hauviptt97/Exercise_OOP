@@ -40,4 +40,11 @@ class ShapeFactory {
         }
         return shapes;
     }
+
+    void showData(List<Shape> shapes) {
+        for (Shape shape : shapes) {
+            System.out.println(shape);
+            System.out.println("===================================");
+        }
+    }
 }
