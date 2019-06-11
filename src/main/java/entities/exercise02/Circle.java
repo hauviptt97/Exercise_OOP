@@ -1,10 +1,12 @@
-package exercise02;
+package entities.exercise02;
+
+import interfaces.exercise02.Shape;
 
 public class Circle implements Shape {
 
     private double r;
 
-    Circle(double r) {
+    public Circle(double r) {
         this.r = r;
     }
 
@@ -21,6 +23,11 @@ public class Circle implements Shape {
     @Override
     public double getPerimeter() {
         return Math.PI * r * 2;
+    }
+
+    @Override
+    public boolean isValid() {
+        return r > 0;
     }
 
     @Override

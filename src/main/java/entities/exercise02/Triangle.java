@@ -1,4 +1,6 @@
-package exercise02;
+package entities.exercise02;
+
+import interfaces.exercise02.Shape;
 
 public class Triangle implements Shape {
 
@@ -6,7 +8,7 @@ public class Triangle implements Shape {
     private double b;
     private double c;
 
-    Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
+    public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
         this.a = getDistance(x1, y1, x2, y2);
         this.b = getDistance(x1, y1, x3, y3);
         this.c = getDistance(x2, y2, x3, y3);
@@ -18,13 +20,9 @@ public class Triangle implements Shape {
         return Math.sqrt(dx * dx + dy * dy);
     }
 
-    private boolean isTriangle() {
-        return a + b > c || a + c > b || b + c > a;
-    }
-
     private String getType() {
 
-        if (!isTriangle()) {
+        if (!isValid()) {
             return "Invalid Triangle";
         }
 
@@ -50,7 +48,7 @@ public class Triangle implements Shape {
 
     @Override
     public double getArea() {
-        if (!isTriangle()) {
+        if (!isValid()) {
             return -1;
         }
 
@@ -61,11 +59,16 @@ public class Triangle implements Shape {
 
     @Override
     public double getPerimeter() {
-        if (!isTriangle()) {
+        if (!isValid()) {
             return -1;
         }
 
         return a + b + c;
+    }
+
+    @Override
+    public boolean isValid() {
+        return a * b * c != 0 && a + b > c && a + c > b && b + c > a;
     }
 
     @Override

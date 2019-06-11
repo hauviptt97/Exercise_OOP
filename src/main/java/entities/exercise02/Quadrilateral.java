@@ -1,4 +1,7 @@
-package exercise02;
+package entities.exercise02;
+
+import interfaces.exercise02.Shape;
+import utils.MathUtils;
 
 public class Quadrilateral implements Shape {
 
@@ -9,7 +12,7 @@ public class Quadrilateral implements Shape {
     private double g;
     private double h;
 
-    Quadrilateral(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
+    public Quadrilateral(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
         this.a = getDistance(x1, y1, x2, y2);
         this.b = getDistance(x2, y2, x3, y3);
         this.c = getDistance(x3, y3, x4, y4);
@@ -44,6 +47,11 @@ public class Quadrilateral implements Shape {
     @Override
     public double getPerimeter() {
         return a + b + c + d;
+    }
+
+    @Override
+    public boolean isValid() {
+        return a * b * c * d != 0 && 2 * MathUtils.max(a, b, c, d) > (a + b + c + d);
     }
 
     @Override
