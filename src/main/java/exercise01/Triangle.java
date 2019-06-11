@@ -1,4 +1,4 @@
-package ex01;
+package exercise01;
 
 public class Triangle {
 
