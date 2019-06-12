@@ -21,9 +21,14 @@ public class Quadrilateral implements Shape {
         this.h = getDistance(x2, y2, x4, y4);
     }
 
+    public boolean isValidTriangle(double a, double b, double c) {
+        return a * b * c != 0 && 2 * MathUtils.max(a, b, c) < (a + b + c);
+    }
+
+
     @Override
     public boolean isValid() {
-        return a * b * c * d != 0 && 2 * MathUtils.max(a, b, c, d) < (a + b + c + d);
+        return isValidTriangle(a, b, c) && isValidTriangle(b, c, d) && isValidTriangle(c, d, a);
     }
 
     public String getType() {
@@ -67,7 +72,6 @@ public class Quadrilateral implements Shape {
         }
         return a + b + c + d;
     }
-
 
 
     @Override

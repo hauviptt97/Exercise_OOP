@@ -1,6 +1,7 @@
 package exercise02Test;
 
 import entities.exercise02.Quadrilateral;
+import entities.exercise02.Triangle;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -14,14 +15,23 @@ public class QuadrilateralTest {
     }
 
     @Test
+    public void test_isValidTriangle() {
+        assertTrue(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(3, 4, 5));
+        assertTrue(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(5, 4, 3));
+        assertTrue(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(3, 5, 4));
+
+        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(0, 4, 5));
+        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(2, 0, 5));
+        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(4, 4, 0));
+        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(4, 1, 1));
+        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(1, 4, 1));
+        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(2, 1, 5));
+    }
+
+    @Test
     public void test_isValid() {
-        assertTrue(new Quadrilateral(1, 3, 2, 1, 3, 4,1,1).isValid());
+        assertTrue(new Quadrilateral(0, 2, 4, 2, 3, 0,0,0).isValid());
         assertFalse(new Quadrilateral(2, 3, 2, 1, 2, 1,3,2).isValid());
-        assertTrue(new Quadrilateral(4, 2, 3, 6, 7, -1,3,3).isValid());
-        assertTrue(new Quadrilateral(0, 0, 0, 3, 6, 0,0,5).isValid());
-        assertTrue(new Quadrilateral(0, 4, 0, 2, 2, 4,6,2).isValid());
-        assertTrue(new Quadrilateral(0, 2, 0, 8, 8, 2,3,5).isValid());
-        assertFalse(new Quadrilateral(0, 0, 4, 0, 2, 2,0,0).isValid());
     }
 
     @Test
