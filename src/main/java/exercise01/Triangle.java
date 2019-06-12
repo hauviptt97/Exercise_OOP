@@ -22,7 +22,7 @@ public class Triangle {
     }
 
     public boolean isTriangle() {
-        return a + b > c && a + c > b && b + c > a;
+        return 2 * MathUtils.max(a, b, c) < (a + b + c);
     }
 
     public String getType() {
@@ -68,4 +68,6 @@ public class Triangle {
     public String toString() {
         return "Type: " + getType() + "\nArea: " + getArea() + "\nPerimeter: " + getPerimeter();
     }
+
+
 }
