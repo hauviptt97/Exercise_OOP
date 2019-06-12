@@ -6,6 +6,9 @@ public class Triangle {
     private double b;
     private double c;
 
+    public Triangle() {
+    }
+
     public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
         this.a = getDistance(x1, y1, x2, y2);
         this.b = getDistance(x1, y1, x3, y3);
@@ -19,7 +22,7 @@ public class Triangle {
     }
 
     public boolean isTriangle() {
-        return a + b > c || a + c > b || b + c > a;
+        return a + b > c && a + c > b && b + c > a;
     }
 
     public String getType() {
@@ -34,7 +37,7 @@ public class Triangle {
 
         if ((a - b) * (a - c) * (b - c) != 0) {
 
-            if (c * c == a * a + b * b || b * b == a * a + c * c || a * a == c * c + b * b) {
+            if (c == Math.sqrt(a * a + b * b) || b == Math.sqrt(a * a + c * c) || a == Math.sqrt(c * c + b * b)) {
                 return "Right Triangle";
             }
 
