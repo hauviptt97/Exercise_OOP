@@ -18,9 +18,7 @@ public class QuadrilateralTest {
         assertTrue(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(3, 4, 5));
         assertTrue(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(5, 4, 3));
         assertTrue(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(3, 5, 4));
-        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(0, 4, 5));
-        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(2, 0, 5));
-        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(4, 4, 0));
+
         assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(4, 1, 1));
         assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(1, 4, 1));
         assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(2, 1, 5));
@@ -34,6 +32,10 @@ public class QuadrilateralTest {
         assertFalse(new Quadrilateral(3, 6, 2, 3, 2, 4, 2, 5).isValid());
         assertFalse(new Quadrilateral(2, 5, 3, 6, 2, 3,2,4).isValid());
         assertFalse(new Quadrilateral(2, 4, 2, 5, 3, 6,2,3).isValid());
+        assertFalse(new Quadrilateral(2, 3, 2, 3, 2, 5,3,6).isValid());
+        assertFalse(new Quadrilateral(3, 6, 2, 3, 2, 3, 2, 5).isValid());
+        assertFalse(new Quadrilateral(2, 5, 3, 6, 2, 3,2,3).isValid());
+        assertFalse(new Quadrilateral(2, 3, 2, 5, 3, 6,2,3).isValid());
     }
 
     @Test
