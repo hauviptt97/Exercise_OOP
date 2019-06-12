@@ -22,13 +22,12 @@ public class Quadrilateral implements Shape {
     }
 
     public boolean isValidTriangle(double a, double b, double c) {
-        return a * b * c != 0 && 2 * MathUtils.max(a, b, c) < (a + b + c);
+        return a + b > c && a + c > b && c + b > a;
     }
-
 
     @Override
     public boolean isValid() {
-        return isValidTriangle(a, b, c) && isValidTriangle(b, c, d) && isValidTriangle(c, d, a);
+        return a * b * c * d != 0 && isValidTriangle(a, b, c) && isValidTriangle(b, c, d) && isValidTriangle(c, d, a);
     }
 
     public String getType() {
