@@ -20,13 +20,18 @@ public class TriangleTest {
         assertFalse(new Triangle(2, 3, 2, 1, 2, 1).isTriangle());
         assertTrue(new Triangle(4, 2, 3, 6, 7, -1).isTriangle());
         assertTrue(new Triangle(0, 0, 0, 3, 6, 0).isTriangle());
+        assertTrue(new Triangle(0, 4, 0, 2, 2, 4).isTriangle());
+        assertTrue(new Triangle(0,2 , 0, 8, 8, 2).isTriangle());
+        assertTrue(new Triangle(0, 0, 4, 0, 2, 2).isTriangle());
     }
 
     @Test
     public void test_getType() {
         assertEquals(new Triangle(2, 3, 2, 1, 2, 1).getType(), "Invalid Triangle");
         assertEquals(new Triangle(-3, 0, 0, 3 * Math.sqrt(3), 3, 0).getType(), "Equilateral Triangle");
-        assertEquals(new Triangle(0, 0, 0, 3, 6, 0).getType(), "Right Triangle");
+        assertEquals(new Triangle(0, 0, 0, 3, 4, 0).getType(), "Right Triangle");
+        assertEquals(new Triangle(0, 0, 4, 0, 0, 3).getType(), "Right Triangle");
+        assertEquals(new Triangle(4, 0, 0, 3, 0, 0).getType(), "Right Triangle");
         assertEquals(new Triangle(4, 2, 3, 6, 7, -1).getType(), "Scalene Triangle");
         assertEquals(new Triangle(1, 3, 2, 1, 3, 4).getType(), "Isosceles Triangle");
     }
