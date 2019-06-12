@@ -1,6 +1,7 @@
 package entities.exercise02;
 
 import interfaces.exercise02.Shape;
+import utils.MathUtils;
 
 public class Triangle implements Shape {
 
@@ -8,19 +9,22 @@ public class Triangle implements Shape {
     private double b;
     private double c;
 
+    public Triangle() {
+    }
+
     public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
         this.a = getDistance(x1, y1, x2, y2);
         this.b = getDistance(x1, y1, x3, y3);
         this.c = getDistance(x2, y2, x3, y3);
     }
 
-    private double getDistance(double x1, double y1, double x2, double y2) {
+    public double getDistance(double x1, double y1, double x2, double y2) {
         double dx = x2 - x1;
         double dy = y2 - y1;
         return Math.sqrt(dx * dx + dy * dy);
     }
 
-    private String getType() {
+    public String getType() {
 
         if (!isValid()) {
             return "Invalid Triangle";
@@ -32,13 +36,13 @@ public class Triangle implements Shape {
 
         if ((a - b) * (a - c) * (b - c) != 0) {
 
-            if (c * c == a * a + b * b || b * b == a * a + c * c || a * a == c * c + b * b) {
+            if (c == Math.sqrt(a * a + b * b) || b == Math.sqrt(a * a + c * c) || a == Math.sqrt(c * c + b * b)) {
                 return "Right Triangle";
             }
 
             return "Scalene Triangle";
         }
-        return " Isosceles Triangle";
+        return "Isosceles Triangle";
     }
 
     @Override
@@ -68,7 +72,7 @@ public class Triangle implements Shape {
 
     @Override
     public boolean isValid() {
-        return a * b * c != 0 && a + b > c && a + c > b && b + c > a;
+        return a * b * c != 0 && 2 * MathUtils.max(a, b, c) < (a + b + c);
     }
 
     @Override

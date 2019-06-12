@@ -10,18 +10,31 @@ public class Circle implements Shape {
         this.r = r;
     }
 
+    public String getType() {
+        if (!isValid()) {
+            return "Invalid Circle";
+        }
+        return "Circle";
+    }
+
     @Override
     public String showInfo() {
-        return "Type: " + "Circle" + "\nArea: " + getArea() + "\nPerimeter: " + getPerimeter();
+        return "Type: " + getType() + "\nArea: " + getArea() + "\nPerimeter: " + getPerimeter();
     }
 
     @Override
     public double getArea() {
+        if (!isValid()) {
+            return -1;
+        }
         return Math.PI * r * r;
     }
 
     @Override
     public double getPerimeter() {
+        if (!isValid()) {
+            return -1;
+        }
         return Math.PI * r * 2;
     }
 
