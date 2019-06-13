@@ -27,7 +27,7 @@ public class Quadrilateral implements Shape {
 
     @Override
     public boolean isValid() {
-        return a * b * c * d != 0 && isValidTriangle(a, b, c) && isValidTriangle(b, c, d) && isValidTriangle(c, d, a);
+        return a * b * c * d != 0 && isValidTriangle(a, b, c) && isValidTriangle(b, c, d) && isValidTriangle(c, d, a)&& isValidTriangle(a, d, b);
     }
 
     public String getType() {
