@@ -5,7 +5,21 @@ import entities.exercise03.Student;
 
 public class Demo {
     public static void main(String[] args) {
+
         StudentController sc = new StudentController("D:/student.json");
-        //sc.addStudent(Student.StudentBuilder.newInstance().setFirstName("Hau").setLastName("Bui Van ").setClassName("15T2").build());
+
+        // sc.getStudents();
+
+        //sc.addStudent(Student.StudentBuilder.newInstance().setFirstName("Hau").setLastName("Bui").setClassName("15T2").build());
+
+        // sc.deleteStudent(2);
+
+        System.out.println(sc.findByClassName("15T2").toString());
+
+        // sc.findByName("Hau Bui");
+
+        // sc.getById(1);
+
+        System.out.println(sc.getStudents().toString());
     }
 }
