@@ -6,20 +6,20 @@ import entities.exercise03.Student;
 public class Demo {
     public static void main(String[] args) {
 
-        StudentController sc = new StudentController("D:/student.json");
+        // StudentController sc = new StudentController("D:/student.json");
 
         // sc.getStudents();
 
         //sc.addStudent(Student.StudentBuilder.newInstance().setFirstName("Hau").setLastName("Bui").setClassName("15T2").build());
 
-        // sc.deleteStudent(2);
+        //sc.deleteStudent(6);
 
-        System.out.println(sc.findByClassName("15T2").toString());
+        //System.out.println(sc.findByClassName("15T2").toString());
 
-        // sc.findByName("Hau Bui");
+        //System.out.println(sc.findByName("Hau"));
 
-        // sc.getById(1);
+        //System.out.println(sc.getById(1));
 
-        System.out.println(sc.getStudents().toString());
+        //  System.out.println(sc.getStudents().toString());
     }
 }

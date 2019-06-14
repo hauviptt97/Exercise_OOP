@@ -2,15 +2,19 @@ package utils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import entities.exercise03.Student;
 
 import java.io.*;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class FileUtils {
 
     private static Gson gson = new Gson();
 
-    public static <T> void readJsonFile(File jsonFile, List<T> objects, Class<T> tClass) {
+    public static <T> void readJsonFile(File jsonFile, List<T> objects, Type typeOfT) {
         FileReader fr;
         BufferedReader br;
 
@@ -28,7 +32,8 @@ public class FileUtils {
 
                 objects.clear();
 
-                objects.addAll(gson.fromJson(json.toString() , new TypeToken<List<Object>>(){}.getType()));
+
+                objects.addAll(gson.fromJson(json.toString(), typeOfT));
 
                 br.close();
                 fr.close();
@@ -38,16 +43,16 @@ public class FileUtils {
         }
     }
 
-    public static <T> void writeToJsonFile(File file, List<T> objects) {
+    public static <T extends Object> void writeToJsonFile(File file, List<T> objects, Type typeOfT) {
         if (file.canWrite()) {
             FileWriter fw;
             BufferedWriter bw;
 
             try {
-                fw = new FileWriter(file,false);
+                fw = new FileWriter(file, false);
                 bw = new BufferedWriter(fw);
 
-                String json = gson.toJson(objects, new TypeToken<List<Object>>(){}.getType());
+                String json = gson.toJson(objects, typeOfT);
                 bw.append(json);
 
                 bw.close();

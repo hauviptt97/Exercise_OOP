@@ -1,9 +1,11 @@
 package controllers.exercise03;
 
+import com.google.gson.reflect.TypeToken;
 import entities.exercise03.Student;
 import utils.FileUtils;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,9 @@ public class StudentController {
 
     private static int COUNT;
 
+    private static Type type;
+
+
     public StudentController(String filePath) {
 
         students = new ArrayList<>();
@@ -22,12 +27,13 @@ public class StudentController {
 
         if (file.exists()) {
             loadFromFile();
-            COUNT = students.size() + 1;
         }
 
     }
 
     public List<Student> getStudents() {
+        loadFromFile();
+
         return students;
     }
 
@@ -47,25 +53,24 @@ public class StudentController {
     }
 
     public boolean deleteStudent(int id) {
-        for (int i = 0; i < students.size(); i++) {
-
-            System.out.println(students.get(i).getId());
-
-            if (students.get(i).getId() == id) {
-                //students.remove(students.get(i));
-                //saveToFile();
-                return true;
-            }
-        }
-        return false;
+        boolean result = students.removeIf(o -> o.getId() == id);
+        saveToFile();
+        return result;
     }
 
     private void saveToFile() {
-        FileUtils.writeToJsonFile(file, students);
+        FileUtils.writeToJsonFile(file, students, type);
     }
 
     private void loadFromFile() {
-        FileUtils.readJsonFile(file, students, Student.class);
+
+        type = new TypeToken<List<Student>>() {
+        }.getType();
+
+        FileUtils.readJsonFile(file, students, type);
+
+        COUNT = students.get(students.size() - 1).getId() + 1;
+
     }
 
     public Student getById(int id) {
@@ -83,7 +88,7 @@ public class StudentController {
         List<Student> result = new ArrayList<>();
 
         for (Student student : students) {
-            if (student.getFirstName().equalsIgnoreCase(name)) {
+            if (student.getFirstName() != null && student.getFirstName().equalsIgnoreCase(name)) {
                 result.add(student);
             }
         }
@@ -95,7 +100,7 @@ public class StudentController {
         List<Student> result = new ArrayList<>();
 
         for (Student student : students) {
-            if (student.getClassName().equalsIgnoreCase(className)) {
+            if (student.getClassName() != null && student.getClassName().equalsIgnoreCase(className)) {
                 result.add(student);
             }
         }
