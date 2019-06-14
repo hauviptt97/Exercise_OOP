@@ -104,17 +104,5 @@ public final class Student {
             return new Student(this);
         }
     }
-
-    @Override
-    public String toString() {
-        return "Student {" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthday=" + birthday +
-                ", className='" + className + '\'' +
-                ", address='" + address + '\'' +
-                '}';
-    }
 }
 

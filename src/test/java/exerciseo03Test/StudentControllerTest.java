@@ -50,7 +50,7 @@ public class StudentControllerTest {
 
         int default_length = students.size();
 
-        assertTrue(sc.deleteStudent(17));
+        assertTrue(sc.deleteStudent(18));
 
         assertEquals(students.size(), default_length - 1);
 
