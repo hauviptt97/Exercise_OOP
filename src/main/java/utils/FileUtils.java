@@ -37,8 +37,7 @@ public class FileUtils {
 
                 br.close();
                 fr.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException ignored) {
             }
         }
     }

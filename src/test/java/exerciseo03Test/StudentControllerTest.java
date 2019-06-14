@@ -13,10 +13,11 @@ public class StudentControllerTest {
 
     private StudentController sc = new StudentController("D:/student.json");
 
-    private List<Student> students = sc.getStudents();
 
     @Test
     public void test_getStudents() {
+        List<Student> students = sc.getStudents();
+
         assertNotNull(students);
     }
 
@@ -40,6 +41,9 @@ public class StudentControllerTest {
 
     @Test
     public void test_addStudent() {
+
+        List<Student> students = sc.getStudents();
+
         int default_length = students.size();
         sc.addStudent(Student.StudentBuilder.newInstance().setFirstName("Hau").setLastName("Bui").setClassName("112").build());
         assertEquals(students.size(), default_length + 1);
@@ -48,9 +52,11 @@ public class StudentControllerTest {
     @Test
     public void test_deleteStudent() {
 
+        List<Student> students = sc.getStudents();
+
         int default_length = students.size();
 
-        assertTrue(sc.deleteStudent(22));
+        assertTrue(sc.deleteStudent(27));
 
         assertEquals(students.size(), default_length - 1);
 
