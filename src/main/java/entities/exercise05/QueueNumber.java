@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QueueNumber {
-    private List<Integer> numbers = new ArrayList<>();
+    private List<Number> numbers = new ArrayList<>();
 
     public boolean isEmpty() {
         return numbers.isEmpty();
@@ -14,13 +14,20 @@ public class QueueNumber {
         numbers.add(number);
     }
 
-    public int dequeue() {
-        int result = numbers.get(0);
-        numbers.remove(0);
-        return result;
+    public Number dequeue() {
+        if (!numbers.isEmpty()) {
+            Number result = numbers.get(0);
+            numbers.remove(0);
+            return result;
+        }
+
+        return -1;
     }
 
-    public int peek() {
+    public Number peek() {
+        if (numbers.isEmpty()) {
+            return -1;
+        }
         return numbers.get(0);
     }
 

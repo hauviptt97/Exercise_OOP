@@ -22,6 +22,7 @@ public class QueueNumberTest {
     @Test
     public void test_dequeue() {
         QueueNumber queueNumber = new QueueNumber();
+        assertEquals(queueNumber.dequeue(), -1);
         queueNumber.enqueue(1);
         queueNumber.enqueue(2);
         queueNumber.enqueue(2);
@@ -31,6 +32,7 @@ public class QueueNumberTest {
     @Test
     public void test_peek() {
         QueueNumber queueNumber = new QueueNumber();
+        assertEquals(queueNumber.peek(), -1);
         queueNumber.enqueue(2);
         queueNumber.enqueue(4);
         assertEquals(queueNumber.peek(), 2);
