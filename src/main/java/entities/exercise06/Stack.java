@@ -15,6 +15,9 @@ public class Stack<T> {
     }
 
     public T pop() {
+        if (ts.isEmpty()) {
+            return null;
+        }
         T result = ts.get(ts.size() - 1);
         ts.remove(ts.get(ts.size() - 1));
         return result;

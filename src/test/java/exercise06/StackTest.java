@@ -23,6 +23,7 @@ public class StackTest {
     @Test
     public void test_pop() {
         Stack<Integer> s = new Stack<>();
+        assertNull(s.pop());
         s.push(12);
         s.push(16);
         s.push(14);
