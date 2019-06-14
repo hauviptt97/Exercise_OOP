@@ -1,7 +1,6 @@
 package exercise04Test;
 
-import entities.exercise04.Stack;
-import junit.framework.TestCase;
+import entities.exercise04.StackNumber;
 import org.junit.Test;
 
 import static junit.framework.TestCase.*;
@@ -10,27 +9,24 @@ public class StackTest {
 
     @Test
     public void test_isEmpty() {
-        assertTrue(new Stack().isEmpty());
+        assertTrue(new StackNumber().isEmpty());
     }
 
     @Test
     public void test_push() {
-        Stack s = new Stack();
-        assertTrue(s.push(10));
-        assertTrue(s.push(20));
-        for (int i = 0; i < 20 ;i++){
-            s.push(12);
-        }
-        assertFalse(s.push(25));
+        StackNumber s = new StackNumber();
+        s.push(10);
+        s.push(20);
+        assertFalse(s.isEmpty());
     }
 
     @Test
     public void test_pop() {
-        Stack s = new Stack();
-        assertEquals(s.pop(),0);
+        StackNumber s = new StackNumber();
+        assertEquals(s.pop(), -1);
         s.push(12);
         s.push(16);
         s.push(14);
-        assertEquals(s.pop(),14);
+        assertEquals(s.pop(), 14);
     }
 }
