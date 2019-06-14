@@ -11,54 +11,51 @@ import static junit.framework.TestCase.*;
 
 public class StudentControllerTest {
 
-    private StudentController sc = new StudentController("D:/student.json");
-
-
     @Test
     public void test_getStudents() {
-        List<Student> students = sc.getStudents();
+        List<Student> students = new StudentController("D:/student.json").getStudents();
 
         assertNotNull(students);
     }
 
     @Test
     public void test_getById() {
-        assertNotNull(sc.getById(7));
-        assertNull(sc.getById(5));
+        assertNotNull(new StudentController("D:/student.json").getById(7));
+        assertNull(new StudentController("D:/student.json").getById(5));
     }
 
     @Test
     public void test_findByName() {
-        assertNotNull(sc.findByName("Hau"));
-        assertEquals(sc.findByName("hoa"),new ArrayList<>());
+        assertNotNull(new StudentController("D:/student.json").findByName("Hau"));
+        assertEquals(new StudentController("D:/student.json").findByName("hoa"), new ArrayList<>());
     }
 
     @Test
     public void test_findByClassName() {
-        assertEquals(sc.findByClassName("15T2").size(),13);
-        assertEquals(sc.findByClassName("gg"),new ArrayList<>());
+        assertEquals(new StudentController("D:/student.json").findByClassName("15T2").size(), 13);
+        assertEquals(new StudentController("D:/student.json").findByClassName("gg"), new ArrayList<>());
     }
 
     @Test
     public void test_addStudent() {
+        StudentController sc = new StudentController("D:/student.json");
 
-        List<Student> students = sc.getStudents();
+        int default_length = sc.getStudents().size();
 
-        int default_length = students.size();
         sc.addStudent(Student.StudentBuilder.newInstance().setFirstName("Hau").setLastName("Bui").setClassName("112").build());
-        assertEquals(students.size(), default_length + 1);
+
+        assertEquals(sc.getStudents().size(), default_length + 1);
     }
 
     @Test
     public void test_deleteStudent() {
+        StudentController sc = new StudentController("D:/student.json");
 
-        List<Student> students = sc.getStudents();
+        int default_length = sc.getStudents().size();
 
-        int default_length = students.size();
+        assertTrue(sc.deleteStudent(29));
 
-        assertTrue(sc.deleteStudent(27));
-
-        assertEquals(students.size(), default_length - 1);
+        assertEquals(sc.getStudents().size(), default_length - 1);
 
         assertFalse(sc.deleteStudent(6));
     }
