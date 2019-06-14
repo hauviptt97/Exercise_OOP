@@ -25,9 +25,7 @@ public class StudentController {
 
         file = new File(filePath);
 
-        if (file.exists()) {
-            loadFromFile();
-        }
+        loadFromFile();
 
     }
 
@@ -88,7 +86,7 @@ public class StudentController {
         List<Student> result = new ArrayList<>();
 
         for (Student student : students) {
-            if (student.getFirstName() != null && student.getFirstName().equalsIgnoreCase(name)) {
+            if (student.getFirstName().equalsIgnoreCase(name)) {
                 result.add(student);
             }
         }
@@ -100,7 +98,7 @@ public class StudentController {
         List<Student> result = new ArrayList<>();
 
         for (Student student : students) {
-            if (student.getClassName() != null && student.getClassName().equalsIgnoreCase(className)) {
+            if ( student.getClassName().equalsIgnoreCase(className)) {
                 result.add(student);
             }
         }
