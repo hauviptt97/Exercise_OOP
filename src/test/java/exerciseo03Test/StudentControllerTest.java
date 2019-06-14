@@ -20,7 +20,7 @@ public class StudentControllerTest {
 
     @Test
     public void test_getById() {
-        assertNotNull(new StudentController("D:/student.json").getById(7));
+        assertNotNull(new StudentController("D:/student.json").getById(3));
         assertNull(new StudentController("D:/student.json").getById(5));
     }
 
@@ -40,22 +40,22 @@ public class StudentControllerTest {
     public void test_addStudent() {
         StudentController sc = new StudentController("D:/student.json");
 
-        int default_length = sc.getStudents().size();
+        int default_length = sc.getStudents().size() - 1;
 
         sc.addStudent(Student.StudentBuilder.newInstance().setFirstName("Hau").setLastName("Bui").setClassName("112").build());
 
-        assertEquals(sc.getStudents().size(), default_length + 1);
+        assertEquals(sc.getStudents().size() - 1, default_length + 1);
     }
 
     @Test
     public void test_deleteStudent() {
         StudentController sc = new StudentController("D:/student.json");
 
-        int default_length = sc.getStudents().size();
+        int default_length = sc.getStudents().size() - 1;
 
-        assertTrue(sc.deleteStudent(29));
+        assertTrue(sc.deleteStudent(33));
 
-        assertEquals(sc.getStudents().size(), default_length - 1);
+        assertEquals(sc.getStudents().size() - 1, default_length - 1);
 
         assertFalse(sc.deleteStudent(6));
     }
