@@ -1,5 +1,7 @@
 package entities.exercise01;
 
+import utils.MathUtils;
+
 public class Triangle {
 
     private double a;
