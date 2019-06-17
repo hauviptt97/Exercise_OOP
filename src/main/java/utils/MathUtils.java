@@ -2,6 +2,7 @@ package utils;
 
 public class MathUtils {
 
+    @SafeVarargs
     public static <T extends Comparable<T>> T max(T... ts) {
         T max = ts[0];
 
