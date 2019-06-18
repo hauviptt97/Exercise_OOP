@@ -22,7 +22,7 @@ public class StudentControllerTest {
         // Copy students-origin to student.json
 
         File file_temp = new File("student-temp.json");
-        File file_origin = new File("student-temp.json");
+        File file_origin = new File("student-origin.json");
 
         if (!file_origin.exists()) {
             try {
