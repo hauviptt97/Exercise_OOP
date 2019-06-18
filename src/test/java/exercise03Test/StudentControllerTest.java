@@ -1,4 +1,4 @@
-package exerciseo03Test;
+package exercise03Test;
 
 import controllers.exercise03.StudentController;
 import entities.exercise03.Student;
@@ -84,7 +84,7 @@ public class StudentControllerTest {
 
         int default_length = sc.getStudents().size();
 
-        assertTrue(sc.deleteStudent(37));
+        assertTrue(sc.deleteStudent(38));
 
         assertEquals(sc.getStudents().size(), default_length - 1);
 
@@ -94,8 +94,8 @@ public class StudentControllerTest {
     @AfterClass
     public static void finalized() {
         //Xoa students.json
-        //File file_temp = new File("student-temp.json");
-        //file_temp.delete();
+        File file_temp = new File("student-temp.json");
+        file_temp.delete();
     }
 
 }
