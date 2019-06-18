@@ -14,41 +14,35 @@ public class FileUtils {
 
     public static <T> List<T> readJsonFile(File jsonFile, Class<T[]> clazz) throws IOException {
 
-        List<T> objects = new ArrayList<>();
+        FileReader fileReader = new FileReader(jsonFile);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String dataRow;
 
-        if (jsonFile.canRead()) {
-            FileReader fileReader = new FileReader(jsonFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String dataRow;
+        StringBuilder json = new StringBuilder();
 
-            StringBuilder json = new StringBuilder();
-
-            while ((dataRow = bufferedReader.readLine()) != null) {
-                json.append(dataRow);
-            }
-
-            T[] arr = gson.fromJson(json.toString(), clazz);
-
-            objects.addAll(Arrays.asList(arr));
-
-            bufferedReader.close();
-            fileReader.close();
+        while ((dataRow = bufferedReader.readLine()) != null) {
+            json.append(dataRow);
         }
+
+        T[] arr = gson.fromJson(json.toString(), clazz);
+
+        List<T> objects = new ArrayList<>(Arrays.asList(arr));
+
+        bufferedReader.close();
+        fileReader.close();
         return objects;
     }
 
     public static <T> void writeToJsonFile(File file, List<T> objects) throws IOException {
-        if (file.canWrite()) {
 
-            FileWriter fileWriter = new FileWriter(file, false);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        FileWriter fileWriter = new FileWriter(file, false);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            String json = gson.toJson(objects);
-            bufferedWriter.append(json);
+        String json = gson.toJson(objects);
+        bufferedWriter.append(json);
 
-            bufferedWriter.close();
-            fileWriter.close();
-        }
+        bufferedWriter.close();
+        fileWriter.close();
     }
 
 }
