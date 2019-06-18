@@ -1,7 +1,6 @@
 package entities.exercise02;
 
 import interfaces.exercise02.Shape;
-import utils.MathUtils;
 
 public class Quadrilateral implements Shape {
 

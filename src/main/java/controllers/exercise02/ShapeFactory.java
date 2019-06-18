@@ -18,18 +18,12 @@ public class ShapeFactory {
 
         for (String lineData : input.split("[\n]+")) {
 
-            List<Integer> data = new ArrayList<>();
-
             Shape shape = null;
 
-            try {
-                data = Stream.of(lineData.split("[, ]+"))
-                        .map(Integer::valueOf)
-                        .collect(Collectors.toList());
+            List<Integer> data = Stream.of(lineData.split("[, ]+"))
+                    .map(Integer::valueOf)
+                    .collect(Collectors.toList());
 
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
 
             if (data.size() == 3) {
                 shape = new Circle(data.get(2));
