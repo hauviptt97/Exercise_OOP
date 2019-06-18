@@ -1,12 +1,10 @@
 package utils;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import entities.exercise03.Student;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -14,52 +12,42 @@ public class FileUtils {
 
     private static Gson gson = new Gson();
 
-    public static <T> void readJsonFile(File jsonFile, List<T> objects, Type typeOfT) {
-        FileReader fr;
-        BufferedReader br;
+    public static <T> List<T> readJsonFile(File jsonFile, Class<T[]> clazz) throws IOException {
+
+        List<T> objects = new ArrayList<>();
 
         if (jsonFile.canRead()) {
-            try {
-                fr = new FileReader(jsonFile);
-                br = new BufferedReader(fr);
-                String dataRow;
+            FileReader fileReader = new FileReader(jsonFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String dataRow;
 
-                StringBuilder json = new StringBuilder();
+            StringBuilder json = new StringBuilder();
 
-                while ((dataRow = br.readLine()) != null) {
-                    json.append(dataRow);
-                }
-
-                objects.clear();
-
-
-                objects.addAll(gson.fromJson(json.toString(), typeOfT));
-
-                br.close();
-                fr.close();
-            } catch (IOException ignored) {
+            while ((dataRow = bufferedReader.readLine()) != null) {
+                json.append(dataRow);
             }
+
+            T[] arr = gson.fromJson(json.toString(), clazz);
+
+            objects.addAll(Arrays.asList(arr));
+
+            bufferedReader.close();
+            fileReader.close();
         }
+        return objects;
     }
 
-    public static <T extends Object> void writeToJsonFile(File file, List<T> objects, Type typeOfT) {
+    public static <T> void writeToJsonFile(File file, List<T> objects) throws IOException {
         if (file.canWrite()) {
-            FileWriter fw;
-            BufferedWriter bw;
 
-            try {
-                fw = new FileWriter(file, false);
-                bw = new BufferedWriter(fw);
+            FileWriter fileWriter = new FileWriter(file, false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-                String json = gson.toJson(objects, typeOfT);
-                bw.append(json);
+            String json = gson.toJson(objects);
+            bufferedWriter.append(json);
 
-                bw.close();
-                fw.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            bufferedWriter.close();
+            fileWriter.close();
         }
     }
 

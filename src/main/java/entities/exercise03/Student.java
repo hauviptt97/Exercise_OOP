@@ -1,8 +1,6 @@
 package entities.exercise03;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.util.Date;
 
@@ -48,26 +46,19 @@ public final class Student {
         return address;
     }
 
-    @JsonPOJOBuilder(withPrefix = "")
     public static class StudentBuilder {
-        @JsonProperty("id")
         private int id;
-        @JsonProperty("firstName")
         private String firstName;
-        @JsonProperty("lastName")
         private String lastName;
-        @JsonProperty("birthday")
         private Date birthday;
-        @JsonProperty("className")
         private String className;
-        @JsonProperty("address")
         private String address;
 
         public static StudentBuilder newInstance() {
             return new StudentBuilder();
         }
 
-        StudentBuilder() {
+        private StudentBuilder() {
         }
 
         public StudentBuilder setId(int id) {

@@ -1,10 +1,9 @@
 package exerciseo03Test;
 
-import com.google.gson.reflect.TypeToken;
 import controllers.exercise03.StudentController;
 import entities.exercise03.Student;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import utils.FileUtils;
 
@@ -15,15 +14,16 @@ import java.util.List;
 
 import static junit.framework.TestCase.*;
 
+@SuppressWarnings("ALL")
 public class StudentControllerTest {
 
-    @Before
-    public void setup() {
+    @BeforeClass
+    public static void setup() {
         // Xoa student.json if exist
         // Copy students-origin to student.json
 
-        File file_temp = new File("students.json");
-        File file_origin = new File("students-origin.json");
+        File file_temp = new File("student-temp.json");
+        File file_origin = new File("student-origin.json");
 
         if (!file_origin.exists()) {
             try {
@@ -33,50 +33,44 @@ public class StudentControllerTest {
             }
         }
 
-        List<Student> students = new ArrayList<>();
+        List<Student> students;
 
-        FileUtils.readJsonFile(file_temp, students, new TypeToken<List<Student>>() {
-        }.getType());
+        try {
+            students = FileUtils.readJsonFile(file_temp, Student[].class);
+            FileUtils.writeToJsonFile(file_origin, students);
+        } catch (IOException ignored) {
+        }
 
-        FileUtils.writeToJsonFile(file_origin, students, new TypeToken<List<Student>>() {
-        }.getType());
-    }
-
-    @After
-    public void finalize() {
-        //Xoa students.json
-        File file_temp = new File("students.json");
-        file_temp.delete();
     }
 
     @Test
     public void test_getStudents() {
-        List<Student> students = new StudentController("student.json").getStudents();
+        List<Student> students = new StudentController("student-temp.json").getStudents();
 
         assertNotNull(students);
     }
 
     @Test
     public void test_getById() {
-        assertNotNull(new StudentController("student.json").getById(3));
-        assertNull(new StudentController("student.json").getById(5));
+        assertNotNull(new StudentController("student-temp.json").getById(3));
+        assertNull(new StudentController("student-temp.json").getById(5));
     }
 
     @Test
     public void test_findByName() {
-        assertNotNull(new StudentController("student.json").findByName("Hau"));
-        assertEquals(new StudentController("student.json").findByName("hoa"), new ArrayList<>());
+        assertNotNull(new StudentController("student-temp.json").findByName("Hau"));
+        assertEquals(new StudentController("student-temp.json").findByName("hoa"), new ArrayList<>());
     }
 
     @Test
     public void test_findByClassName() {
-        assertEquals(new StudentController("student.json").findByClassName("15T2").size(), 13);
-        assertEquals(new StudentController("student.json").findByClassName("gg"), new ArrayList<>());
+        assertEquals(new StudentController("student-temp.json").findByClassName("15T2").size(), 13);
+        assertEquals(new StudentController("student-temp.json").findByClassName("gg"), new ArrayList<>());
     }
 
     @Test
     public void test_addStudent() {
-        StudentController sc = new StudentController("student.json");
+        StudentController sc = new StudentController("student-temp.json");
 
         int default_length = sc.getStudents().size();
 
@@ -87,16 +81,22 @@ public class StudentControllerTest {
 
     @Test
     public void test_deleteStudent() {
-        StudentController sc = new StudentController("student.json");
+        StudentController sc = new StudentController("student-temp.json");
 
         int default_length = sc.getStudents().size();
 
-        assertTrue(sc.deleteStudent(37));
+        assertTrue(sc.deleteStudent(40));
 
         assertEquals(sc.getStudents().size(), default_length - 1);
 
         assertFalse(sc.deleteStudent(6));
     }
 
+    @AfterClass
+    public static void finalized() {
+        //Xoa students.json
+        File file_temp = new File("student-temp.json");
+        file_temp.delete();
+    }
 
 }
