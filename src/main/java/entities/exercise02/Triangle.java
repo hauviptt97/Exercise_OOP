@@ -9,9 +9,6 @@ public class Triangle implements Shape {
     private double b;
     private double c;
 
-    public Triangle() {
-    }
-
     public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
         this.a = getDistance(x1, y1, x2, y2);
         this.b = getDistance(x1, y1, x3, y3);
