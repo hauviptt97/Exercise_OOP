@@ -8,7 +8,7 @@ public class MathUtilsTest {
     public void test_max() {
         TestCase.assertEquals((int) MathUtils.max(12, 3, 4, 6), 12);
         TestCase.assertEquals((int) MathUtils.max(12, 3, 24, 6,32), 32);
-
+        new MathUtils();
     }
 
 }
