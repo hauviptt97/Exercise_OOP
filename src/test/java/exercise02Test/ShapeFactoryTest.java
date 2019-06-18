@@ -15,7 +15,6 @@ public class ShapeFactoryTest {
         List<Shape> test2 = new ShapeFactory().getData("1");
         TestCase.assertEquals(test1.size(), 4);
         TestCase.assertEquals(test2.size(), 0);
-
     }
 
 }

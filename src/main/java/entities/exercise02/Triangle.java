@@ -18,7 +18,7 @@ public class Triangle implements Shape {
         this.c = getDistance(x2, y2, x3, y3);
     }
 
-    public double getDistance(double x1, double y1, double x2, double y2) {
+    public static double getDistance(double x1, double y1, double x2, double y2) {
         double dx = x2 - x1;
         double dy = y2 - y1;
         return Math.sqrt(dx * dx + dy * dy);

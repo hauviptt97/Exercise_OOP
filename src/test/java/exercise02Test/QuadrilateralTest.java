@@ -10,18 +10,18 @@ import static org.junit.Assert.assertTrue;
 public class QuadrilateralTest {
     @Test
     public void test_getDistance() {
-        assertEquals(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).getDistance(0, 3, 4, 0), 5.0);
+        assertEquals(Quadrilateral.getDistance(0, 3, 4, 0), 5.0);
     }
 
     @Test
     public void test_isValidTriangle() {
-        assertTrue(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(3, 4, 5));
-        assertTrue(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(5, 4, 3));
-        assertTrue(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(3, 5, 4));
+        assertTrue(Quadrilateral.isValidTriangle(3, 4, 5));
+        assertTrue(Quadrilateral.isValidTriangle(5, 4, 3));
+        assertTrue(Quadrilateral.isValidTriangle(3, 5, 4));
 
-        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(4, 1, 1));
-        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(1, 4, 1));
-        assertFalse(new Quadrilateral(0, 0, 0, 0, 0, 0, 0, 0).isValidTriangle(2, 1, 5));
+        assertFalse(Quadrilateral.isValidTriangle(4, 1, 1));
+        assertFalse(Quadrilateral.isValidTriangle(1, 4, 1));
+        assertFalse(Quadrilateral.isValidTriangle(2, 1, 5));
     }
 
     @Test

@@ -11,7 +11,7 @@ public class TriangleTest {
 
     @Test
     public void test_getDistance() {
-        assertEquals(new Triangle().getDistance(0, 3, 4, 0), 5.0);
+        assertEquals(Triangle.getDistance(0, 3, 4, 0), 5.0);
     }
 
     @Test

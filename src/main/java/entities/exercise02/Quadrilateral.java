@@ -20,7 +20,7 @@ public class Quadrilateral implements Shape {
         this.h = getDistance(x2, y2, x4, y4);
     }
 
-    public boolean isValidTriangle(double a, double b, double c) {
+    public static boolean isValidTriangle(double a, double b, double c) {
         return a + b > c && a + c > b && c + b > a;
     }
 
@@ -36,13 +36,13 @@ public class Quadrilateral implements Shape {
         return "Quadrilateral";
     }
 
-    public double getDistance(double x1, double y1, double x2, double y2) {
+    public static double getDistance(double x1, double y1, double x2, double y2) {
         double dx = x2 - x1;
         double dy = y2 - y1;
         return Math.sqrt(dx * dx + dy * dy);
     }
 
-    public double getAreaOfTriangle(double a, double b, double c) {
+    public static double getAreaOfTriangle(double a, double b, double c) {
         double p = (a + b + c) / 2;
         return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
