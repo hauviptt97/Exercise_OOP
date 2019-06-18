@@ -14,7 +14,6 @@ import java.util.List;
 
 import static junit.framework.TestCase.*;
 
-@SuppressWarnings("ALL")
 public class StudentControllerTest {
 
     @BeforeClass
@@ -46,8 +45,8 @@ public class StudentControllerTest {
     @Test
     public void test_getStudents() {
         System.out.println(new File("student-temp.json").getAbsolutePath());
-    //    List<Student> students = new StudentController("student-temp.json").getStudents();
-    //    assertNotNull(students);
+        List<Student> students = new StudentController("student-temp.json").getStudents();
+        assertNotNull(students);
     }
 
     @Test
