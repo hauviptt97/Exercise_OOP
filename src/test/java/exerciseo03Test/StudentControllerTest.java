@@ -46,7 +46,6 @@ public class StudentControllerTest {
     @Test
     public void test_getStudents() {
         List<Student> students = new StudentController("student-temp.json").getStudents();
-
         assertNotNull(students);
     }
 
@@ -85,7 +84,7 @@ public class StudentControllerTest {
 
         int default_length = sc.getStudents().size();
 
-        assertTrue(sc.deleteStudent(40));
+        assertTrue(sc.deleteStudent(37));
 
         assertEquals(sc.getStudents().size(), default_length - 1);
 
@@ -95,8 +94,8 @@ public class StudentControllerTest {
     @AfterClass
     public static void finalized() {
         //Xoa students.json
-        File file_temp = new File("student-temp.json");
-        file_temp.delete();
+        //File file_temp = new File("student-temp.json");
+        //file_temp.delete();
     }
 
 }
